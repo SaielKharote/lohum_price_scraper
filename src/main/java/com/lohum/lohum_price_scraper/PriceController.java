@@ -1,10 +1,11 @@
 package com.lohum.lohum_price_scraper;
 
-import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.io.IOException;
 
@@ -22,4 +23,10 @@ public class PriceController {
             return "Encountered an error while fetching the price. " + "(Error: "+ error.getMessage()+")";
         }
     }
+
+    @GetMapping("/*")
+    public String errorResponse() {
+        return "Error : Invalid Endpoint";
+    }
+
 }
